@@ -1,46 +1,57 @@
-import { createApp } from 'vue';
+import { createApp, App } from 'vue';
 import { Modal } from '../components';
 import type { Option } from '../types';
-let resolvePromise: any = null;
+import { getSystemTheme, mergeOptions } from '../utils';
+import { globalOptions } from '../store';
 
-export const confirmationModal = {
-  modalInstance: null,
-  baseProps: {
+// Use an IIFE (Immediately Invoked Function Expression) to encapsulate private members and expose only what's necessary.
+export const confirmationModal = (() => {
+  let modalInstance: App | null = null;
+  let resolvePromise: (value: boolean) => void;
+
+  const baseProps = {
     confirm: () => {
-      resolvePromise(true);
-      confirmationModal.close();
+      if (resolvePromise) resolvePromise(true);
+      close();
     },
     reject: () => {
-      resolvePromise(false);
-      confirmationModal.close();
+      if (resolvePromise) resolvePromise(false);
+      close();
     }
-  },
+  };
 
-  close() {
-    this.modalInstance = null;
-
-    const container = document.querySelector('#modalPlug');
-    if (container) document.body.removeChild(container);
-  },
-
-  show(options: Option) {
-    this.createInstance(options);
-
-    return new Promise((resolve, reject) => {
-      resolvePromise = resolve;
-    });
-  },
-
-  createInstance(options: Option) {
-    if (!this.modalInstance) {
-      const container = document.createElement('div');
-      container.setAttribute('id', 'modalPlug');
-      document.body.appendChild(container);
-      // @ts-ignore
-      this.modalInstance = createApp(Modal, {
-        ...this.baseProps,
-        ...options
-      }).mount(container);
+  function close() {
+    if (modalInstance) {
+      const container = document.querySelector('#modalPlug');
+      if (container) document.body.removeChild(container);
+      modalInstance.unmount();
+      modalInstance = null;
     }
   }
-};
+
+  function createInstance(options: Option) {
+    if (!modalInstance) {
+      const finalOptions = mergeOptions(globalOptions, options, baseProps) as Option & Record<string, unknown>;
+
+      if (finalOptions.theme === 'auto') {
+        finalOptions.theme = getSystemTheme();
+      }
+
+      const container = document.createElement('div');
+      container.id = 'modalPlug';
+      document.body.appendChild(container);
+
+      modalInstance = createApp(Modal, finalOptions);
+      modalInstance.mount(container);
+    }
+  }
+
+  return {
+    show(options: Option) {
+      return new Promise<boolean>(resolve => {
+        resolvePromise = resolve;
+        createInstance(options);
+      });
+    }
+  };
+})();

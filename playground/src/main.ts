@@ -3,4 +3,9 @@ import ConfirmationModal from 'vue-confirmation-modal';
 import 'vue-confirmation-modal/dist/style.css';
 import App from './App.vue';
 
-createApp(App).use(ConfirmationModal).mount('#app');
+createApp(App)
+  .use(ConfirmationModal, {
+    title: 'Are you sure!',
+    theme: 'auto'
+  })
+  .mount('#app');

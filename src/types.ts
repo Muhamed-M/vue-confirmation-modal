@@ -2,5 +2,7 @@ export interface Option {
   title: string;
   text?: string;
   primaryBtnText?: string;
-  isDark?: boolean;
+  theme?: ConfirmationModalTheme;
 }
+
+export type ConfirmationModalTheme = 'auto' | 'light' | 'dark';

@@ -1,9 +1,11 @@
 {
   "name": "vue-confirmation-modal",
   "version": "0.0.1",
-  "description": "Simple and lightweight promise based confirmation modal.",
+  "description": "🚀 Simple and lightweight promise based confirmation modal.",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "workspaces": [
     "playground"
   ],
@@ -12,10 +14,12 @@
     "dev": "concurrently \"npm run build\" \"npm run dev -w playground\""
   },
   "keywords": [
+    "vue",
+    "vue3",
     "confirmation",
     "modal",
-    "vue",
-    "modal"
+    "alert",
+    "vue-modal"
   ],
   "author": "Muhamed Muhamedagic",
   "license": "ISC",
@@ -26,7 +30,6 @@
     "@types/node": "^20.12.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "@vue/babel-plugin-jsx": "^1.2.2",
     "concurrently": "^8.2.2",
     "typescript": "^5.4.3",
     "vite": "^5.2.7",

@@ -1,0 +1,1 @@
+export { globalOptions } from './globalOptions';

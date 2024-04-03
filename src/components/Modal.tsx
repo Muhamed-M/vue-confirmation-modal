@@ -1,28 +1,44 @@
-import { DefineComponent, defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { Default } from '../utils/constants';
 import '../styles/main.css';
 
 export const Modal = defineComponent({
   name: 'Modal',
   props: {
-    text: String,
-    primaryBtnText: String,
+    title: {
+      type: String,
+      required: true
+    },
+    text: {
+      type: String,
+      required: true
+    },
+    primaryBtnText: {
+      type: String,
+      required: true
+    },
     confirm: { type: Function, required: true },
     reject: { type: Function, required: true },
-    isDark: {
-      type: Boolean,
-      default: false
+    theme: {
+      type: String
     }
   },
   setup(props) {
+    const className = computed(() => [
+      `${Default.CSS_NAMESPACE}__modal-container`,
+      `${Default.CSS_NAMESPACE}__${props.theme}-theme`
+    ]);
+
     const rejectHandler = () => {
       props.reject();
     };
+
     const confirmHandler = () => {
       props.confirm();
     };
 
     return () => (
-      <div className={props.isDark ? 'vue-cm__modal-container vue-cm__dark-theme' : 'vue-cm__modal-container'}>
+      <div class={className.value}>
         <div className="vue-cm__modal">
           <div className="vue-cm__warning">
             {/* icon */}
@@ -36,7 +52,7 @@ export const Modal = defineComponent({
           </div>
           <div>
             <div className="vue-cm__modal-header">
-              <h2 className="vue-cm__title">Are you sure?</h2>
+              <h2 className="vue-cm__title">{props.title}</h2>
             </div>
             <div className="vue-cm__modal-body">
               <p>{props.text}</p>

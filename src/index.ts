@@ -1,23 +1,19 @@
-import { Option } from './types';
-import { Modal } from './components';
 import { Plugin } from 'vue';
-
-const defaultOptions = {
-  text: 'This action will permanently delete this record! Is it ok to proceed?',
-  primaryBtnText: 'Confirm'
-} as Option;
+import { mergeOptions, saveGlobalOptions } from './utils';
+import { defaultOptions } from './utils/constants';
+import { Option } from './types';
 
 const ConfirmationModal: Plugin = {
-  install(app, options = defaultOptions) {
-    // console.log(options);
-    app.component('Modal', Modal);
+  install(_, options: Option) {
+    const mergedOptions = mergeOptions(defaultOptions, options);
+    saveGlobalOptions(mergedOptions);
   }
 };
 
 // CDN compatibility
-// if (window !== undefined && 'Vue' in window) {
-//   window.ConfirmationModal = ConfirmationModal;
-// }
+if (typeof window !== 'undefined') {
+  (window as any).ConfirmationModal = ConfirmationModal;
+}
 
 export default ConfirmationModal;
 export * from './core';
