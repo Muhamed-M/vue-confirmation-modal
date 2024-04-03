@@ -1,23 +1,49 @@
-# Requirements
+# Vue Confirmation Modal
 
-vue version >=3.0.0
+A Vue 3 plugin for easily integrating promise based confirmation modals into your application, with support for theme customization and global configuration.
 
-# Installation
+## Requirements
+
+Vue version >=3.0.0
+
+## Installation
+
+Install the package using npm:
 
 ```bash
-npm install --save vue-confirmation-modal
+npm install vue-confirmation-modal
 ```
 
-# Add to Vue
+Or using yarn:
+
+```bash
+yarn add vue-confirmation-modal
+```
+
+## Setup
+
+Add ConfirmationModal to your Vue application in your main entry file (typically main.ts or main.js):
 
 ```ts
-// main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
 import ConfirmationModal from 'vue-confirmation-modal';
+import 'vue-confirmation-modal/dist/style.css'; // import styles
 
-app.use(ConfirmationModal);
+const app = createApp(App);
+
+app.use(ConfirmationModal, {
+  // Global configuration options
+  title: 'Are you sure?',
+  theme: 'auto' // 'auto' | 'light' | 'dark' (auto defaults to system preference)
+});
+
+app.mount('#app');
 ```
 
-# Usage
+## Usage
+
+Use the confirmationModal object to display a modal. The show method returns a promise that resolves to true if the user confirms or false if the user rejects or closes the modal.
 
 ```html
 <script setup lang="ts">
@@ -26,6 +52,7 @@ app.use(ConfirmationModal);
   const handleDelete = async () => {
     try {
       const confirmed = await confirmationModal.show({
+        // these options will override default
         text: 'This action will permanently delete this record! Is it ok to proceed?',
         primaryBtnText: 'Confirm'
       });
@@ -45,3 +72,11 @@ app.use(ConfirmationModal);
   </main>
 </template>
 ```
+
+## Options
+
+You can customize the confirmation modal by providing options either globally (when adding the plugin to your app) or locally (when calling the show method).
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request with any improvements or bug fixes.
