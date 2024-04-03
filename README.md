@@ -1,4 +1,6 @@
 # Vue Confirmation Modal
+<img width="477" alt="Screenshot 2024-04-03 at 23 53 40" src="https://github.com/Muhamed-M/vue-confirmation-modal/assets/80977652/fc3e69d0-20c8-4093-8cf1-59b7d3887231">
+<img width="477" alt="Screenshot 2024-04-03 at 23 54 18" src="https://github.com/Muhamed-M/vue-confirmation-modal/assets/80977652/3694bfec-f0b3-4d32-8521-8b2b2700f71b">
 
 A Vue 3 plugin for easily integrating promise based confirmation modals into your application, with support for theme customization and global configuration.
 
