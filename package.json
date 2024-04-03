@@ -19,10 +19,24 @@
     "confirmation",
     "modal",
     "alert",
-    "vue-modal"
+    "vue-modal",
+    "vue-confirmation",
+    "are you sure",
+    "are you sure modal",
+    "vue-component",
+    "alert",
+    "alert modal"
   ],
   "author": "Muhamed Muhamedagic",
-  "license": "ISC",
+  "homepage": "https://github.com/Muhamed-M/vue-confirmation-modal",
+  "bugs": {
+    "url": "https://github.com/Muhamed-M/vue-confirmation-modal/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhamed-M/vue-confirmation-modal"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "vue": "^3.4.21"
   },
