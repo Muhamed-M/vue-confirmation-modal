@@ -12,7 +12,7 @@ const ConfirmationModal: Plugin = {
 
 // CDN compatibility
 if (typeof window !== 'undefined') {
-  (window as any).ConfirmationModal = ConfirmationModal;
+  window.ConfirmationModal = ConfirmationModal;
 }
 
 export default ConfirmationModal;

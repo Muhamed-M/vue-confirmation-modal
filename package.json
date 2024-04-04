@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "vite build",
-    "dev": "concurrently \"npm run build\" \"npm run dev -w playground\""
+    "dev": "concurrently \"npm run build\" \"npm run dev -w playground\"",
+    "typecheck": "tsc && vue-tsc"
   },
   "keywords": [
     "vue",
