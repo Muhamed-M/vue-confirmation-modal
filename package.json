@@ -24,7 +24,6 @@
     "are you sure",
     "are you sure modal",
     "vue-component",
-    "alert",
     "alert modal"
   ],
   "author": "Muhamed Muhamedagic",
@@ -37,9 +36,6 @@
     "url": "git+https://github.com/Muhamed-M/vue-confirmation-modal"
   },
   "license": "MIT",
-  "peerDependencies": {
-    "vue": "^3.4.21"
-  },
   "devDependencies": {
     "@types/node": "^20.12.2",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -49,5 +45,8 @@
     "vite": "^5.2.7",
     "vite-plugin-dts": "^3.8.1",
     "vue-tsc": "^2.0.7"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.25"
   }
 }

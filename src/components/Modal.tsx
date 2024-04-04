@@ -39,8 +39,8 @@ export const Modal = defineComponent({
 
     return () => (
       <div class={className.value}>
-        <div className="vue-cm__modal">
-          <div className="vue-cm__warning">
+        <div class="vue-cm__modal">
+          <div class="vue-cm__warning">
             {/* icon */}
             <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -51,17 +51,17 @@ export const Modal = defineComponent({
             </svg>
           </div>
           <div>
-            <div className="vue-cm__modal-header">
-              <h2 className="vue-cm__title">{props.title}</h2>
+            <div class="vue-cm__modal-header">
+              <h2 class="vue-cm__title">{props.title}</h2>
             </div>
-            <div className="vue-cm__modal-body">
+            <div class="vue-cm__modal-body">
               <p>{props.text}</p>
             </div>
-            <div className="vue-cm__modal-actions">
-              <button onClick={rejectHandler} className="vue-cm__btn-secondary">
+            <div class="vue-cm__modal-actions">
+              <button onClick={rejectHandler} class="vue-cm__btn-secondary">
                 Cancel
               </button>
-              <button onClick={confirmHandler} className="vue-cm__btn-primary">
+              <button onClick={confirmHandler} class="vue-cm__btn-primary">
                 {props.primaryBtnText}
               </button>
             </div>
