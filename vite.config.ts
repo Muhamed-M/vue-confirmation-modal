@@ -1,8 +1,11 @@
 import dts from 'vite-plugin-dts';
+import fs from 'fs';
 import path from 'path';
 import Vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
+
+const resolvePath = (pathName: string) => path.resolve(__dirname, pathName);
 
 export default defineConfig({
   resolve: {
@@ -33,8 +36,16 @@ export default defineConfig({
     dts({
       include: 'src',
       rollupTypes: true,
-      afterBuild: () => {
-        // do something else
+      outDir: 'dist',
+      afterBuild() {
+        try {
+          const filePath = resolvePath('dist/index.d.ts');
+          const buffer = fs.readFileSync(filePath);
+          const content = String(buffer);
+          fs.writeFileSync(filePath, content);
+        } catch (error) {
+          //
+        }
       }
     })
   ]
