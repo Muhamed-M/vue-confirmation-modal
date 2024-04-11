@@ -1,4 +1,4 @@
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { Default } from '../utils/constants';
 import '../styles/main.css';
 
@@ -21,25 +21,53 @@ export const Modal = defineComponent({
     reject: { type: Function, required: true },
     theme: {
       type: String
+    },
+    animation: {
+      type: String
     }
   },
   setup(props) {
-    const className = computed(() => [
+    const modalRef = ref();
+    const isClosing = ref(false);
+    const containerClassName = computed(() => [
       `${Default.CSS_NAMESPACE}__modal-container`,
       `${Default.CSS_NAMESPACE}__${props.theme}-theme`
     ]);
 
+    const modalClassName = computed(() => [
+      `${Default.CSS_NAMESPACE}__modal`,
+      props.animation !== 'none' ? `${Default.CSS_NAMESPACE}__modal__${props.animation}` : '',
+      isClosing.value ? `${Default.CSS_NAMESPACE}__modal__${props.animation}-out` : ''
+    ]);
+
+    const handleClosingAnimation = (resolvePromise: Function) => {
+      isClosing.value = true;
+
+      const onAnimationEnd = () => {
+        modalRef.value.removeEventListener('animationend', onAnimationEnd);
+        // resolve the promise
+        resolvePromise();
+      };
+
+      if (props.animation !== 'none') {
+        // use animationend event to wait for the animation to finish and then close the modal
+        modalRef.value.addEventListener('animationend', onAnimationEnd);
+      } else {
+        resolvePromise();
+      }
+    };
+
     const rejectHandler = () => {
-      props.reject();
+      handleClosingAnimation(props.reject);
     };
 
     const confirmHandler = () => {
-      props.confirm();
+      handleClosingAnimation(props.confirm);
     };
 
     return () => (
-      <div class={className.value}>
-        <div class="vue-cm__modal">
+      <div class={containerClassName.value}>
+        <div ref={modalRef} class={modalClassName.value}>
           <div class="vue-cm__warning">
             {/* icon */}
             <svg width="30px" height="30px" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

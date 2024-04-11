@@ -38,6 +38,7 @@ const app = createApp(App);
 app.use(ConfirmationModal, {
   // Global configuration options
   title: 'Are you sure?',
+  animation: 'slideUp', // 'none' | 'slideUp' | 'slideDown' | 'roadRunner' | 'bounce'
   theme: 'auto' // 'auto' | 'light' | 'dark' (auto defaults to system preference)
 });
 
@@ -79,6 +80,17 @@ Use the confirmationModal object to display a modal. The show method returns a p
 ## Options
 
 You can customize the confirmation modal by providing options either globally (when adding the plugin to your app) or locally (when calling the show method).
+These are default options:
+
+```ts
+export const defaultOptions: Options = {
+  title: 'Are you sure?',
+  text: 'This action will permanently delete this record! Is it ok to proceed?',
+  primaryBtnText: 'Confirm',
+  theme: 'light',
+  animation: 'slideUp'
+};
+```
 
 ## Contributing
 

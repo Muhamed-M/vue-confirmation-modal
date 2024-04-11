@@ -5,7 +5,7 @@ import App from './App.vue';
 
 createApp(App)
   .use(ConfirmationModal, {
-    title: 'Are you sure!',
+    animation: 'roadRunner',
     theme: 'auto'
   })
   .mount('#app');

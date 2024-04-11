@@ -1,4 +1,4 @@
 import { reactive } from 'vue';
-import { Option } from '../types';
+import { Options } from '../types';
 
-export const globalOptions = reactive<Option | {}>({});
+export const globalOptions = reactive<Options | {}>({});

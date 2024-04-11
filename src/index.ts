@@ -1,10 +1,10 @@
 import { Plugin } from 'vue';
 import { mergeOptions, saveGlobalOptions } from './utils';
 import { defaultOptions } from './utils/constants';
-import { Option } from './types';
+import { Options } from './types';
 
 const ConfirmationModal: Plugin = {
-  install(_, options: Option) {
+  install(_, options: Options) {
     const mergedOptions = mergeOptions(defaultOptions, options);
     saveGlobalOptions(mergedOptions);
   }

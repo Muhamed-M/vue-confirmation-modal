@@ -1,6 +1,6 @@
 import { createApp, App } from 'vue';
 import { Modal } from '../components';
-import type { Option } from '../types';
+import type { Options } from '../types';
 import { getSystemTheme, mergeOptions } from '../utils';
 import { globalOptions } from '../store';
 
@@ -29,9 +29,9 @@ export const confirmationModal = (() => {
     }
   }
 
-  function createInstance(options: Option) {
+  function createInstance(options: Options) {
     if (!modalInstance) {
-      const finalOptions = mergeOptions(globalOptions, options, baseProps) as Option & Record<string, unknown>;
+      const finalOptions = mergeOptions(globalOptions, options, baseProps) as Options & Record<string, unknown>;
 
       if (finalOptions.theme === 'auto') {
         finalOptions.theme = getSystemTheme();
@@ -47,7 +47,7 @@ export const confirmationModal = (() => {
   }
 
   return {
-    show(options: Option) {
+    show(options: Options) {
       return new Promise<boolean>(resolve => {
         resolvePromise = resolve;
         createInstance(options);

@@ -4,13 +4,14 @@ import path from 'path';
 import Vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
+import pkg from './package.json';
 
 const resolvePath = (pathName: string) => path.resolve(__dirname, pathName);
 
 export default defineConfig({
   resolve: {
     alias: {
-      'vue-confirmation-modal': path.resolve(__dirname, './src/index.ts')
+      'vue-confirmation-modal': resolvePath('./src/index.ts')
     }
   },
   build: {
@@ -21,13 +22,16 @@ export default defineConfig({
         if (type === 'cjs') return 'index.js';
         return 'index.js';
       },
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: resolvePath('src/index.ts'),
       formats: ['es', 'cjs']
     },
-    // sourcemap: true,
     rollupOptions: {
-      external: ['vue']
-    }
+      output: {
+        exports: 'named'
+      },
+      external: [...Object.keys(pkg.devDependencies), ...Object.keys(pkg.peerDependencies)]
+    },
+    watch: {}
   },
   plugins: [
     Vue(),

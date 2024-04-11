@@ -1,0 +1,130 @@
+.vue-cm__modal__slideUp {
+  animation: slideUp 0.3s ease;
+}
+
+.vue-cm__modal__slideUp-out {
+  animation: slideUpOut 0.2s ease;
+}
+
+.vue-cm__modal__roadRunner {
+  animation: roadRunnerIn 0.3s ease;
+}
+
+.vue-cm__modal__roadRunner-out {
+  animation: roadRunnerOut 0.2s ease;
+}
+
+.vue-cm__modal__slideDown {
+  animation: slideDown 0.3s ease;
+}
+
+.vue-cm__modal__slideDown-out {
+  animation: slideDownOut 0.2s ease;
+}
+
+.vue-cm__modal__bounce {
+  animation: bounceLeftRight 0.4s ease;
+}
+
+.vue-cm__modal__bounce-out {
+  animation: bounceRightOut 0.2s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(25%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(25%);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-25%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-25%);
+  }
+}
+
+@keyframes roadRunnerIn {
+  0% {
+    transform: translateX(-1500px) skewX(30deg) scaleX(1.3);
+  }
+  70% {
+    transform: translateX(30px) skewX(0deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+}
+
+@keyframes roadRunnerOut {
+  0% {
+    transform: translateX(0px) skewX(0deg) scaleX(1);
+  }
+  30% {
+    transform: translateX(-30px) skewX(-5deg) scaleX(0.9);
+  }
+  100% {
+    transform: translateX(1500px) skewX(30deg) scaleX(1.3);
+  }
+}
+
+@keyframes bounceLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(7%);
+  }
+  40% {
+    transform: translateX(-7%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  60% {
+    transform: translateX(3%);
+  }
+  80% {
+    transform: translateX(-3%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceRightOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

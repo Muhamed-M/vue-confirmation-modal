@@ -32,4 +32,8 @@ main {
   display: grid;
   place-items: center;
 }
+
+/* .vue-cm__modal-body {
+  color: red;
+} */
 </style>
