@@ -63,6 +63,8 @@ Use the confirmationModal object to display a modal. The show method returns a p
 
       if (!confirmed) return;
 
+      // your functionality goes here
+
       alert('Deleted successfully');
     } catch (error) {
       alert('Failed to delete');

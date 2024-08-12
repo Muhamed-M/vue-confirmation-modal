@@ -4,11 +4,13 @@
 :root {
   --modal-bg-color: #fff;
   --modal-text-color: #2c2c2c;
+  --border-color: #646464;
 }
 
 .vue-cm__dark-theme {
   --modal-bg-color: #353535;
   --modal-text-color: #fff;
+  --border-color: #b6b6b6;
 }
 
 .vue-cm__modal-container {
@@ -31,10 +33,14 @@
   color: var(--modal-text-color);
   padding: 1.5rem;
   border-radius: 7px;
+  border: 1px solid var(--border-color);
 }
 
 .vue-cm__modal-header {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .vue-cm__warning {
@@ -53,10 +59,10 @@
   font-size: 1.3rem;
 }
 
-.vue-cm__body {
-  font-size: 0.7rem;
-  font-weight: 300;
+.vue-cm__modal-body {
+  font-weight: 400;
   color: var(--modal-text-color);
+  padding-inline: 1rem;
 }
 
 .vue-cm__modal-actions {
@@ -64,7 +70,6 @@
   justify-content: end;
   align-items: center;
   gap: 1.2rem;
-  /* background-color: #f9fafb; */
 }
 
 .vue-cm__modal-container button {

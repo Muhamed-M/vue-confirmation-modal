@@ -5,6 +5,7 @@ const handleDelete = async () => {
   try {
     const confirmed = await confirmationModal.show({
       text: 'This action will permanently delete this record! Is it ok to proceed?',
+      theme: 'dark',
       primaryBtnText: 'Confirm'
     });
 
@@ -19,7 +20,7 @@ const handleDelete = async () => {
 
 <template>
   <main>
-    <button @click="handleDelete">delete something</button>
+    <button @click="handleDelete" class="btn">delete something</button>
   </main>
 </template>
 
@@ -33,7 +34,21 @@ main {
   place-items: center;
 }
 
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 /* .vue-cm__modal-body {
   color: red;
+}
+
+.vue-cm__btn-primary {
+  background-color: #007bff;
+  color: white;
 } */
 </style>
