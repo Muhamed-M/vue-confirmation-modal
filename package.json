@@ -1,6 +1,6 @@
 {
   "name": "vue-confirmation-modal",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "🚀 Simple and lightweight promise based confirmation modal.",
   "type": "module",
   "main": "./dist/index.js",
