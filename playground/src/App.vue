@@ -5,7 +5,7 @@ const handleDelete = async () => {
   try {
     const confirmed = await confirmationModal.show({
       text: 'This action will permanently delete this record! Is it ok to proceed?',
-      theme: 'dark',
+      theme: 'light',
       primaryBtnText: 'Confirm'
     });
 
@@ -25,9 +25,9 @@ const handleDelete = async () => {
 </template>
 
 <style>
-body {
+/* body {
   background-color: #232323;
-}
+} */
 main {
   height: 100vh;
   display: grid;

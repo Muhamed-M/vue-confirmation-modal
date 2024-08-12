@@ -22,6 +22,7 @@
   display: grid;
   place-items: center;
   font-family: 'Roboto', sans-serif;
+  z-index: 999;
 }
 
 .vue-cm__modal {
@@ -34,6 +35,7 @@
   padding: 1.5rem;
   border-radius: 7px;
   border: 1px solid var(--border-color);
+  z-index: 1000;
 }
 
 .vue-cm__modal-header {
