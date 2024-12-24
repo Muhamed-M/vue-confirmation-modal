@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed, ref, onMounted, onUnmounted } from 'vue';
 import { Default } from '../utils/constants';
 import '../styles/main.css';
 
@@ -40,6 +40,9 @@ export const Modal = defineComponent({
       isClosing.value ? `${Default.CSS_NAMESPACE}__modal__${props.animation}-out` : ''
     ]);
 
+    const titleId = `${Default.CSS_NAMESPACE}__modal-title`;
+    const descriptionId = `${Default.CSS_NAMESPACE}__modal-description`;
+
     const handleClosingAnimation = (resolvePromise: Function) => {
       isClosing.value = true;
 
@@ -65,9 +68,31 @@ export const Modal = defineComponent({
       handleClosingAnimation(props.confirm);
     };
 
+    // Close modal on `Escape` key
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        rejectHandler();
+      }
+    };
+
+    // Manage listeners and `aria-hidden` state
+    onMounted(() => {
+      window.addEventListener('keydown', handleKeydown);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('keydown', handleKeydown);
+    });
+
     return () => (
       <div class={containerClassName.value}>
-        <div ref={modalRef} class={modalClassName.value}>
+        <div
+          ref={modalRef}
+          class={modalClassName.value}
+          role="modal"
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+        >
           <div>
             <div class="vue-cm__modal-header">
               <div class="vue-cm__warning">
@@ -80,11 +105,13 @@ export const Modal = defineComponent({
                   />
                 </svg>
               </div>
-              <h2 class="vue-cm__title">{props.title}</h2>
+              <h2 id={titleId} class="vue-cm__title">
+                {props.title}
+              </h2>
             </div>
             <div>
               <div class="vue-cm__modal-body">
-                <p>{props.text}</p>
+                <p id={descriptionId}>{props.text}</p>
               </div>
               <div class="vue-cm__modal-actions">
                 <button onClick={rejectHandler} class="vue-cm__btn-secondary">
